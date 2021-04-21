@@ -1,0 +1,21 @@
+
+.formContainer{
+  display: flex; 
+  margin-top: 15px;  
+}
+
+
+.form{
+margin: auto;
+}
+
+.formInput{
+  width: 300px;  
+}
+
+.formButton{
+    display: block;
+  text-align: center;
+ margin: auto;
+ width: 100px;
+}

@@ -1,0 +1,20 @@
+.App {
+  margin-left: 50px;
+  color: grey;
+  
+  
+}
+
+p{
+  margin: 0px;
+}
+/* ul{
+  margin: 0;
+  padding: 0;
+} */
+
+.fallback{
+  text-align: center;
+  font-weight: 900;
+  color: blue;
+}

@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-weight: 700;
+  margin-right: 12px;
+}
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 700;
+  color: #2a363b;
+  margin-right: 12px;
+}
+
+.activeLink {
+  color: blue;
+}
+
+.exitButton{
+    border:none;
+    background-color: transparent;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid grey}

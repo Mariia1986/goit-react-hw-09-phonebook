@@ -1,0 +1,36 @@
+.contaktList{
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+}
+
+
+
+.contaktListItem{
+    display: flex;
+    margin: auto;
+    justify-content: first baseline;
+    vertical-align: center; 
+    text-align: center;
+  margin-bottom: 20px;
+ 
+    
+}
+
+.contaktListButton{
+    margin-left: 10px;
+    /* width: 70px;
+    height: 25px; */
+    padding: 0;
+    outline:none;
+    background-color: transparent;
+    border:none;
+
+    /* vertical-align: middle; */
+}
+
+.contaktListName{
+    font-weight: 500;
+    font-size: 20px;
+}

@@ -1,0 +1,45 @@
+
+.container{
+    display: flex;
+    
+}
+
+
+.form{
+    margin: auto;
+    outline: 2px solid blue;
+    width: 260px;
+    height: auto;
+    padding: 20px;
+}
+
+.formInput{
+    display: block;
+    margin-bottom: 10px;
+    border: none;
+    outline: 2px solid grey ;
+    border-radius: 5px;
+  
+}
+
+/* .formInput:focus,
+           :hover{
+    color: blue;
+} */
+
+.label{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: blue;
+}
+
+.addButton{
+    display: block;
+   margin: auto;
+}
+.header{
+    text-align: center;
+    color: gray;
+    margin-top: 15px;
+}
