@@ -1,27 +1,36 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import {connect} from 'react-redux'
-import operations from '../redux/auth/auth-operations'
-import s from './views.module.css'
+import { connect } from "react-redux";
+import operations from "../redux/auth/auth-operations";
+import s from "./views.module.css";
 
-class Login extends Component {
-  state = { email: "", password: "" };
-
-  handleChange = ({ target: { name, value } }) => {
-    this.setState({ [name]: value });
+const Login = ({ onLogin }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleChange = (e) => {
+    const { name, value } = e.currentTarget;
+    switch (name) {
+      case "email":
+        setEmail(value);
+        return;
+      case "password":
+        setPassword(value);
+        return;
+      default:
+        console.log("Something wrong");
+    }
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.props.onLogin(this.state)
-    this.setState({ email: "", password: "" });
+    onLogin({ email, password });
+    setEmail("");
+    setPassword("");
   };
 
-  render() {
-    const { email, password } = this.state;
-    return (
-      <div className={s.formContainer}>
-      <Form onSubmit={this.handleSubmit} className={s.form}>
+  return (
+    <div className={s.formContainer}>
+      <Form onSubmit={handleSubmit} className={s.form}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -29,7 +38,7 @@ class Login extends Component {
             placeholder="Enter email"
             name="email"
             value={email}
-            onChange={this.handleChange}
+            onChange={handleChange}
             className={s.formInput}
           />
           <Form.Text className="text-muted">
@@ -44,7 +53,7 @@ class Login extends Component {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={this.handleChange}
+            onChange={handleChange}
             className={s.formInput}
           />
         </Form.Group>
@@ -53,13 +62,12 @@ class Login extends Component {
           Login
         </Button>
       </Form>
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
-const mapDispathToProps={
-  onLogin:operations.login
-}
+const mapDispathToProps = {
+  onLogin: operations.login,
+};
 
 export default connect(null, mapDispathToProps)(Login);

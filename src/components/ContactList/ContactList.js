@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./ContactList.module.css";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -6,39 +6,39 @@ import Spinner from "../Loader/Loader";
 
 import EditContactForm from "./EditContactForm.js/EditContactForm";
 
-class ContactList extends Component {
-  state = {
-    editform: false,
-    idContact: null,
-  };
+const ContactList=({fetchCont,  deleteCont, filteredCont,isLoading })=>{
+   const[ editform, setEditForm]=useState(false);
+   const[idContact, setIdContact]=useState(null)
+   
+   useEffect(()=>{
+    fetchCont()
+    
+    
+   },[])
 
-  componentDidMount() {
-    this.props.fetchCont();
-  }
-  onClickDelete = (id) => {
-    this.props.deleteCont(id);
-  };
-  onClickEdit = (id) => {
-    this.setState({ editform: !this.state.editform, idContact: id });
-  };
+const onClickDelete=(id)=>{
+  deleteCont(id)
+}
 
-  render() {
-    const { filteredCont, isLoading } = this.props;
+const onClickEdit = (id) => {
+  setEditForm(!editform);
+  setIdContact (id);
+    };
 
-    return (
-      <>
-        {isLoading && <Spinner />}
+  return(
+    <>         
+    {isLoading && <Spinner />}
         {
           <ul className={s.contaktList}>
             {filteredCont.map(({ id, name, number }) => (
               <li className={s.contaktListItem} key={id}>
                 <div>
-                  {this.state.editform && id === this.state.idContact ? (
+                  {editform && id === idContact ? (
                     <EditContactForm
                       id={id}
-                      name={name}
-                      number={number}
-                      editReset={this.onClickEdit}
+                      currName={name}
+                      currNumber={number}
+                      editReset={onClickEdit}
                     />
                   ) : (
                     <p className={s.contaktListName}>
@@ -50,16 +50,16 @@ class ContactList extends Component {
                   <button
                     className={s.contaktListButton}
                     type="button"
-                    onClick={() => this.onClickDelete(id)}
+                    onClick={() => onClickDelete(id)}
                   >
                     <DeleteIcon color="primary" />
                   </button>
                   <button
                     className={s.contaktListButton}
                     type="button"
-                    onClick={() => this.onClickEdit(id)}
+                    onClick={()=>onClickEdit(id)}
                   >
-                    {!this.state.editform && <EditIcon color="primary" />}
+                    {!editform && <EditIcon color="primary" />}
                   </button>
                 </div>
               </li>
@@ -67,8 +67,13 @@ class ContactList extends Component {
           </ul>
         }
       </>
-    );
-  }
+  )
 }
+
+
+
+
+
+
 
 export default ContactList;
