@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import s from "./Filter.module.css";
 import PropTypes from "prop-types";
 import { filterContacts } from "../../redux/contacts/actions/userActions";
 import { filterContact} from '../../redux/contacts/selectors'
 
-class Filter extends Component {
-  handleFilter = (e) => {
-    this.props.filterAct(e.currentTarget.value);
+const Filter=() =>{
+  const filter=useSelector(filterContact);
+  const dispatch = useDispatch();
+  const handleFilter = (e) => {
+    dispatch(filterContacts(e.currentTarget.value));
   };
 
-  render() {
+  
     return ( 
       <>
     <h2 className={s.filterTitle}>Contacts</h2>
@@ -21,8 +23,8 @@ class Filter extends Component {
         <input
           className={s.filterInput}
           name="filter"
-          value={this.props.filter}
-          onChange={this.handleFilter}
+          value={filter}
+          onChange={handleFilter}
           type="text"
         />
       </label>
@@ -30,19 +32,13 @@ class Filter extends Component {
       </>
     );
   }
-}
 
-const mapStateToProps = (state) => ({
-  
-  filter: filterContact(state),
-});
-const mapDispatchToProps = {
-  filterAct: filterContacts,
-};
+
+
 
 Filter.propTypes = {
   filter: PropTypes.string,
   search: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

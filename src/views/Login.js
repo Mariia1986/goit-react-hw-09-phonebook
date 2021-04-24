@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import operations from "../redux/auth/auth-operations";
 import s from "./views.module.css";
 
 const Login = ({ onLogin }) => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const handleChange = (e) => {
@@ -23,7 +24,7 @@ const Login = ({ onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin({ email, password });
+    dispatch(operations.login({ email, password }));
     setEmail("");
     setPassword("");
   };
@@ -66,8 +67,6 @@ const Login = ({ onLogin }) => {
   );
 };
 
-const mapDispathToProps = {
-  onLogin: operations.login,
-};
 
-export default connect(null, mapDispathToProps)(Login);
+
+export default Login;

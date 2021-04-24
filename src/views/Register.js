@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { connect } from "react-redux";
+import {useDispatch } from "react-redux";
 import operations from "../redux/auth/auth-operations";
 import s from "./views.module.css";
 
 const Register = ({ register }) => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +28,7 @@ const Register = ({ register }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register({ name, email, password });
+    dispatch(operations.register({ name, email, password }));
     setEmail("");
     setPassword("");
     setName("");
@@ -83,8 +84,4 @@ const Register = ({ register }) => {
 
 
 
-const mapDispatchToProps = {
-  register: operations.register,
-};
-
-export default connect(null, mapDispatchToProps)(Register);
+export default Register;
