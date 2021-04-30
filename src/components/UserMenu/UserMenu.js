@@ -11,7 +11,7 @@ import s from './userMenu.module.css'
 
 const UserMenu = () => {
   const dispatch = useDispatch();
-  const onLogout = dispatch(operations.logout)
+  const onLogout= ()=>dispatch(operations.logout())
   const name = useSelector(getUsername)
   
   

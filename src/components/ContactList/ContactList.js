@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import s from "./ContactList.module.css";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -11,25 +11,27 @@ import PropTypes from "prop-types";
 
 const ContactList = () => {
   const dispatch = useDispatch();
-  const filteredCont = useSelector(filteredContacts);
+  const filteredCont =useSelector(filteredContacts);
+  console.log(filteredCont)
   const isLoading = useSelector(getLoading);
   const [editform, setEditForm] = useState(false);
   const [idContact, setIdContact] = useState(null);
 
   useEffect(() => {
     dispatch(operation.fetchContacts());
-  }, []);
+  }, [dispatch]);
 
-  const onClickDelete = (id) => {
+  const onClickDelete = useCallback((id) => {
     dispatch(operation.deleteContacts(id));
-  };
+  }, [dispatch]);
 
   const onClickEdit = (id) => {
     setEditForm(!editform);
     setIdContact(id);
   };
-
+  console.log(filteredCont)
   return (
+   
     <>
       {isLoading && <Spinner />}
       {
@@ -73,6 +75,8 @@ const ContactList = () => {
     </>
   );
 };
+
+
 ContactList.propTypes = {
   filteredNames: PropTypes.array,
   deleteItem: PropTypes.func,

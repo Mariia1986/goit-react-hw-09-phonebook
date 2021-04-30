@@ -11,8 +11,9 @@ export const filteredContacts = createSelector(
   [getContacts, filterContact],
   (items, filter) =>
     items.filter(({ name }) =>
-      name.toLowerCase().includes(filter.toLocaleLowerCase())
+     {console.log(items, filter)
+       return name.toLowerCase().includes(filter.toLocaleLowerCase())}
     )
 );
-
+console.log(typeof(filteredContacts))
 export const getLoading = (state) => state.contacts.loader;

@@ -8,6 +8,10 @@
 
 
 .contaktListItem{
+    width: 300px;
+    height: auto;
+    outline: 2px solid blue;
+    box-shadow:5px 3px 3px 5px grey;
     display: flex;
     margin: auto;
     justify-content: first baseline;
@@ -33,4 +37,9 @@
 .contaktListName{
     font-weight: 500;
     font-size: 20px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
 }
